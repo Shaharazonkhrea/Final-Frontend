@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import { getRandomRecipes } from './services/recipeService'; 
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [recipes, setRecipes] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      setLoading(true);
+      try {
+        const fetchedRecipes = await getRandomRecipes();
+        console.log("Fetched Recipes:", fetchedRecipes);
+        setRecipes(fetchedRecipes);
+      } catch (err) {
+        if (err instanceof Error) {
+          console.error("Error fetching recipes:", err);
+          setError(err.message); 
+        } else {
+          setError("An unknown error occurred");
+        }
+      } finally {
+        setLoading(false); 
+      }
+    };
+
+    fetchRecipes();
+  }, []);
+
 
   return (
-    <>
+    <div className="App">
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {recipes && recipes.length > 0 ? (
+          recipes.map((recipe) => (
+            <div key={recipe.id}>
+              <h2>{recipe.title}</h2>
+              <img src={recipe.image} alt={recipe.title} style={{ width: '300px' }} />
+            </div>
+          ))
+        ) : (
+          <p>No recipes available</p>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
