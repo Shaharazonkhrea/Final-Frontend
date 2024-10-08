@@ -1,4 +1,3 @@
-
 const Header = () => (
     <div className="header">
         <h3>Bite Finder</h3>
