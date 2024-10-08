@@ -10,9 +10,8 @@ const RecipeItem: FC<Props> = ({ recipe }) => {
     
     <>
     <li>
-      <h3>{recipe.name} {recipe.isVegan}</h3>
-      <p>Calories: {recipe.calories}</p>
-      {recipe.image && <img src={recipe.image} alt={recipe.name} width="100" />} 
+      <h3>{recipe.title}</h3>
+      <p>Ingredients: {recipe.ingredients}</p>
       <p>Steps: {recipe.steps}</p>
     </li>
     </>

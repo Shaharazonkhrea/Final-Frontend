@@ -6,53 +6,59 @@ interface Props {
 }
 
 const RecipeForm: FC<Props> = ({ addRecipe }) => {
-  const [name, setName] = useState('')
-  const [calories, setCalories] = useState(0)
-  const [isVegan, setIsVegan] = useState(false)
-  const [image, setImage] = useState('')
+  const [title, setName] = useState('')
+  const [ingredients, setIngredients] = useState('')
   const [steps, setSteps] = useState('')
+  const [isFavorite, setFavorite] = useState(false)
+  const [category, setCategory] = useState('')
+  const [imageUrl, setShowImage] = useState(false)
+  
 
   const handleSubmit = () => {
     const newRecipe: Recipe = { 
-        name, 
-        calories, 
-        isVegan, 
-        image, 
-        steps 
+        title, 
+        ingredients, 
+        steps,
+        isFavorite,
+        category, 
+        imageUrl, 
+
     }
     addRecipe(newRecipe)
     setName('')
-    setCalories(0)
-    setIsVegan(false)
-    setImage('')
+    setIngredients('')
+    setFavorite(false)
+    setCategory('')
+    setShowImage(false)
     setSteps('')
   }
 
-  const handleImageChange = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]))
+  const handleClick = () => {
+    setShowImage(true)
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="recipename">
         <label className="form-label">Recipe Name</label>
-        <input type="text" className="formControl" value={name} onChange={(e) => setName(e.target.value)} required />
+        <input type="text" className="formControl" value={title} onChange={(e) => setName(e.target.value)} />
       </div>
-      <div className="calories">
-        <label className="form-label">Calories</label>
-        <input type="number" className="formControl" value={calories} onChange={(e) => setCalories(e.target.value)} required />
+      <div className="ingredients">
+        <label className="form-label">Ingredients</label>
+        <input type="text" className="formControl" value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
       </div>
       <div className="vegan">
-        <input type="checkbox" className="formCheck" checked={isVegan} onChange={() => setIsVegan(!isVegan)} />
-        <label className="form-check-label">Is Vegan?</label>
+        <input type="checkbox" className="formCheck" checked={isFavorite} onChange={() => setFavorite(!isFavorite)} />
+        <label className="form-check-label">Is Favorite?</label>
       </div>
       <div className="userImage">
-        <label className="form-label">Upload Image</label>
-        <input type="file" className="formControl" onChange={handleImageChange} required />
+        <label className="form-label">Add Image</label>
+        <button className="formControl" onClick={handleClick}>Show Image</button>
+        {imageUrl && <img src="pizza.png" alt="Description" />}
       </div>
       <div className="steps">
         <label className="form-label">Cooking Steps</label>
-        <textarea className="form-control" value={steps} onChange={(e) => setSteps(e.target.value)} required />
+        <textarea className="form-control" value={steps} onChange={(e) => setSteps(e.target.value)} />
       </div>
       <button type="submit" className="btn btn-primary">Add Recipe</button>
     </form>
