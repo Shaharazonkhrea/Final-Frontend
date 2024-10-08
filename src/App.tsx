@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getRandomRecipes } from './services/recipeService'; 
+import Favorites from './components/Favorites';
 
 const App: React.FC = () => {
   const [recipes, setRecipes] = useState<any[]>([]);
