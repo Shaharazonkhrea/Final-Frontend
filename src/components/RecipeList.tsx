@@ -1,5 +1,5 @@
 import { FC } from "react"
-import Recipe from "./Recipe"
+import RecipeCard from "./RecipeCard"
 import RecipeModel from "../models/RecipeModel"
 
 interface Props {
@@ -9,9 +9,11 @@ interface Props {
 const RecipeList: FC<Props> = ({ recipes }) => (
     <div className="recipe-list">
         <h3>RECIPES</h3>
-        {recipes.map(recipe => (
-            <Recipe key={recipe._id} recipe={recipe}/>
-        ))}
+        <ul>
+            {recipes.map(recipe => (
+                <RecipeCard key={recipe._id} recipe={recipe}/>
+            ))}
+        </ul>
     </div>
 )
 
