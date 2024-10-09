@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getFavorites, Recipe } from '../services/recipeService';
+import { getFavorites, toggleFavorite, Recipe } from '../services/recipeService';
 
 const Favorites: React.FC = () => {
   const [favorites, setFavorites] = useState<Recipe[]>([]);
@@ -21,6 +21,21 @@ const Favorites: React.FC = () => {
 
     fetchFavorites();
   }, []);
+
+  const handleToggleFavorite = async (recipeId: number) => {
+    try {
+      await toggleFavorite(recipeId);
+
+      setFavorites((prevFavorites) =>
+        prevFavorites.map((recipe) =>
+          recipe.id === recipeId ? { ...recipe, isFavorited: !recipe.isFavorited } : recipe
+        )
+      );
+    } catch (err) {
+      console.error('Error toggling favorite:', err);
+      setError('Error toggling favorite');
+    }
+  };
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
