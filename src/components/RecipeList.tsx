@@ -1,6 +1,6 @@
 import { FC } from "react"
 import RecipeCard from "./RecipeCard"
-import RecipeModel from "../models/RecipeModel"
+import RecipeModel from "../interfaces/Recipe"
 
 interface Props {
     recipes: RecipeModel[]

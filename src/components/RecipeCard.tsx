@@ -1,9 +1,9 @@
 import { FC } from "react";
-import RecipeModel from "../models/RecipeModel";
+import Recipe from "../interfaces/Recipe";
 import { Link } from "react-router-dom";
 
 interface Props {
-    recipe: RecipeModel
+    recipe: Recipe
 }
 
 const RecipeCard: FC<Props> = ({ recipe }) => (

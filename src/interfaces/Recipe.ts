@@ -1,9 +1,8 @@
-export default interface RecipeModel {
+export default interface Recipe {
     _id?: string
     title: string
     ingredients: string
     steps: string
-    isFavorite: boolean
     category: string
     imageUrl: string
 }
