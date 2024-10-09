@@ -1,11 +1,20 @@
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect } from 'react'
+import RecipeForm from './RecipeForm'
+import RecipeList from './RecipeList'
+//import Recipe from './interface/Recipe'
 import { getRandomRecipes } from './services/recipeService'; 
 import Favorites from './components/Favorites';
 
 const App: React.FC = () => {
-  const [recipes, setRecipes] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [recipes, setRecipes] = useState<any[]>([])
+
+  const addRecipe = (newRecipe: any) => {
+    setRecipes([...recipes, newRecipe])
+  }
+
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,6 +41,8 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
+      <h1>Cooking Recipes</h1>
+      <RecipeForm addRecipe={addRecipe} />
       <div>
         {recipes && recipes.length > 0 ? (
           recipes.map((recipe) => (

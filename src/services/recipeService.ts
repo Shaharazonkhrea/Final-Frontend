@@ -1,4 +1,9 @@
-import axios from 'axios';
+import axios from "axios"
+
+const apiUrl =
+	import.meta.env.VITE_API_BASE_URL + "/recipes"
+const apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY; 
+const BASE_URL = 'https://api.spoonacular.com/recipes';
 
 export interface Recipe {
   id: number;
@@ -7,8 +12,28 @@ export interface Recipe {
   isFavorited: boolean;
 }
 
-const apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY; 
-const BASE_URL = 'https://api.spoonacular.com/recipes';
+export const getRecipe = async (): Promise<
+	Recipe[]
+> => (await axios.get(apiUrl)).data
+
+export const updateRecipe = async (
+	recipe: Recipe,
+	id: string
+): Promise<void> =>
+	await axios.put(
+		apiUrl + "/" + encodeURIComponent(id),
+		recipe
+)
+
+export const addRecipe = async (
+	recipe: Recipe
+): Promise<void> => await axios.post(apiUrl, recipe)
+
+export const deleteRecipe = async (
+	id: string
+): Promise<void> =>
+	await axios.delete(apiUrl + "/" + id)
+
 
 export const getRandomRecipes = async (): Promise<Recipe[]> => {
   try {
