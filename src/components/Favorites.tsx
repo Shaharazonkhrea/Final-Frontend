@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getFavorites, toggleFavorite, Recipe } from '../services/recipeService';
+import { getFavorites, toggleFavorite } from '../services/recipeService';
+import Recipe from '../interfaces/Recipe';
 
 const Favorites: React.FC = () => {
   const [favorites, setFavorites] = useState<Recipe[]>([]);
@@ -22,13 +23,13 @@ const Favorites: React.FC = () => {
     fetchFavorites();
   }, []);
 
-  const handleToggleFavorite = async (recipeId: number) => {
+  const handleToggleFavorite = async (recipeId: string) => {
     try {
-      await toggleFavorite(recipeId);
+      await toggleFavorite(+recipeId);
 
       setFavorites((prevFavorites) =>
         prevFavorites.map((recipe) =>
-          recipe.id === recipeId ? { ...recipe, isFavorited: !recipe.isFavorited } : recipe
+          recipe._id === recipeId ? { ...recipe, isFavorited: !recipe.isFavorited } : recipe
         )
       );
     } catch (err) {
@@ -45,9 +46,9 @@ const Favorites: React.FC = () => {
       <h1>Your Favorite Recipes</h1>
       {favorites.length > 0 ? (
         favorites.map((recipe) => (
-          <div key={recipe.id}>
+          <div key={recipe._id}>
             <h2>{recipe.title}</h2>
-            <img src={recipe.image} alt={recipe.title} style={{ width: '300px' }} />
+            <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '300px' }} />
             <button>{recipe.isFavorited ? 'Unfavorite' : 'Favorite'}</button>
           </div>
         ))
