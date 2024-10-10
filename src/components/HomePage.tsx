@@ -4,6 +4,7 @@ import RecipeList from "./RecipeList"
 import { useEffect, useState } from "react"
 import Recipe from "../interfaces/Recipe"
 import { getRandomRecipes } from "../services/recipeService"
+import SearchFilter from "./SearchFilter"
 
 const HomePage = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([])
@@ -11,8 +12,9 @@ const HomePage = () => {
         getRandomRecipes().then(rs => setRecipes(rs))
     }, [])
 
-    return(
+    return (
         <div>
+            <SearchFilter onSearchResults={(rs: Recipe[]) => setRecipes(rs)} />
             <RecipeList recipes={recipes} />
         </div>
     )

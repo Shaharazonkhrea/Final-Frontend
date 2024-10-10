@@ -10,7 +10,7 @@ const scrubRecipes = (recipes: any[]): Recipe[] => (
     title: recipe.title,
     ingredients: recipe.extendedIngredients,
     steps: recipe.instructions,
-    category: recipe.cuisines[0],
+    category: recipe.cuisines ? recipe.cuisines[0] : undefined,
     imageUrl: recipe.image
   }))
 )
@@ -42,7 +42,7 @@ export const searchRecipes = async (query: string): Promise<Recipe[]> => {
       }
     );
     console.log("Search Results:", response.data);
-    return response.data.results;
+    return scrubRecipes(response.data.results);
   } catch (error) {
     console.error("Error searching recipes:", error);
     throw new Error('Error searching recipes: ' + (error instanceof Error ? error.message : 'Unknown error'));

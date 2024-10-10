@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { searchRecipes, Recipe } from '../services/recipeService';
+import { searchRecipes } from '../services/recipeService';
+import Recipe from '../interfaces/Recipe';
 
 interface SearchFilterProps {
   onSearchResults: (results: Recipe[]) => void; 
