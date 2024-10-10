@@ -42,11 +42,11 @@ const Favorites: React.FC = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <div className='favorites-container'>
       <h1>Your Favorite Recipes</h1>
       {favorites.length > 0 ? (
         favorites.map((recipe) => (
-          <div key={recipe._id}>
+          <div className='recipe-item favorite' key={recipe._id}>
             <h2>{recipe.title}</h2>
             <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '300px' }} />
             <button>{recipe.isFavorited ? 'Unfavorite' : 'Favorite'}</button>
