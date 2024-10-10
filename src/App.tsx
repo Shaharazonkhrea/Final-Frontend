@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import RecipeForm from "./components/RecipeForm";
 import Favorites from "./components/Favorites";
+import './App.css'
+
 
 const App = () => (
   <Router>

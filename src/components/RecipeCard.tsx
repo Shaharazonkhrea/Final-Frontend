@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Recipe from "../interfaces/Recipe";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface Props {
     recipe: Recipe
@@ -8,8 +8,8 @@ interface Props {
 
 const RecipeCard: FC<Props> = ({ recipe }) => (
     <li className="recipe-item">
-        <img src={recipe.imageUrl} alt="x" />
-        <Link to="/recipe-details"><span>{recipe.title}</span></Link>
+        <img className="recipe-image" src={recipe.imageUrl} alt={recipe.title} />
+        <NavLink className="recipe-link" to="/recipe-details"><span>{recipe.title}</span></NavLink>
         <span>{recipe.category}</span>
     </li>
 )
