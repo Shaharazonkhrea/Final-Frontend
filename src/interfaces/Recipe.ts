@@ -4,5 +4,6 @@ export default interface Recipe {
     ingredients?: string
     steps?: string
     category?: string
+    isFavorited?: boolean
     imageUrl: string
 }
