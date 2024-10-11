@@ -4,7 +4,7 @@ import HomePage from "./components/HomePage";
 import RecipeForm from "./components/RecipeForm";
 import Favorites from "./components/Favorites";
 import './App.css'
-
+import RecipeDetail from "./components/RecipeDetail";
 
 const App = () => (
   <Router>
@@ -13,6 +13,7 @@ const App = () => (
       <Route path="/" element={<HomePage />} />
       <Route path="/add-recipe" element={<RecipeForm />} />
       <Route path="/favorites" element={<Favorites />} />
+      <Route path="/recipe-details/:userRecipeId/:spoonacularId" element={<RecipeDetail />} />
     </Routes>
   </Router>
 )
