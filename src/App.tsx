@@ -14,6 +14,7 @@ const App = () => (
       <Route path="/add-recipe" element={<RecipeForm />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/recipe-details/:userRecipeId/:spoonacularId" element={<RecipeDetail />} />
+      <Route path="/recipes/:id" element={<RecipeDetail />} />
     </Routes>
   </Router>
 )
