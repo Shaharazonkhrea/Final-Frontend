@@ -8,17 +8,19 @@ const RecipeDetail: React.FC = () => {
     const [spoonacularRecipe, setSpoonacularRecipe] = useState<any | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const { userRecipeId, spoonacularId } = useParams<{ userRecipeId: string, spoonacularId: string }>();
+    // const { userRecipeId, spoonacularId } = useParams<{ userRecipeId: string, spoonacularId: string }>();
+    const { spoonacularId } = useParams<{ spoonacularId: string }>();
 
 useEffect(() => {
     const fetchRecipes = async () => {
       try {
-        if (userRecipeId) {
-          const fetchedUserRecipe = await getRecipeById(userRecipeId);
-          setUserRecipe(fetchedUserRecipe);
-        }
+        // if (userRecipeId) {
+        //   const fetchedUserRecipe = await getRecipeById(userRecipeId);
+        //   setUserRecipe(fetchedUserRecipe);
+        // }
         if (spoonacularId) {
           const fetchedSpoonacularRecipe = await getSpoonacularRecipeById(spoonacularId);
+          console.log(fetchedSpoonacularRecipe)
           setSpoonacularRecipe(fetchedSpoonacularRecipe);
         }
       } catch (err) {
@@ -30,7 +32,7 @@ useEffect(() => {
     };
 
     fetchRecipes();
-  }, [userRecipeId, spoonacularId]);
+  }, [spoonacularId]);
 
   if (loading) {
     return <p>Loading recipe details...</p>;
@@ -43,7 +45,7 @@ useEffect(() => {
   return (
     <div>
       <h1>Recipe Details</h1>
-      {userRecipe && (
+      {/* {userRecipe && (
         <div>
           <h2>User Recipe: {userRecipe.title}</h2>
           <img src={userRecipe.imageUrl} alt={userRecipe.title} />
@@ -51,7 +53,7 @@ useEffect(() => {
           <p>Steps: {userRecipe.steps}</p>
           <p>Category: {userRecipe.category}</p>
         </div>
-      )}
+      )} */}
 
       {spoonacularRecipe && (
         <div>
@@ -63,7 +65,7 @@ useEffect(() => {
         </div>
       )}
 
-      {!userRecipe && !spoonacularRecipe && (
+      {!spoonacularRecipe && (
         <p>No recipe details found.</p>
       )}
     </div>

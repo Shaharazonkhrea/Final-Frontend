@@ -16,6 +16,7 @@ const scrubRecipes = (recipes: any[]): Recipe[] => (
   }))
 )
 
+
 export const getRecipeById = async (id: string): Promise<Recipe> => {
   const response = await axios.get('${apiUrl}/${id}');
   return response.data;
