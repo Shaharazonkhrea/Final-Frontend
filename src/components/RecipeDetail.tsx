@@ -57,11 +57,36 @@ useEffect(() => {
 
       {spoonacularRecipe && (
         <div>
-          <h2>Spoonacular Recipe: {spoonacularRecipe.title}</h2>
+          <h2>
+            {spoonacularRecipe.title}</h2>
           <img src={spoonacularRecipe.imageUrl} alt={spoonacularRecipe.title} />
-          <p>Ingredients: {spoonacularRecipe.ingredients}</p>
-          <p>Steps: {spoonacularRecipe.steps}</p>
-          <p>Category: {spoonacularRecipe.category}</p>
+
+          <h3>Ingredients:</h3>
+          <ul>
+            {spoonacularRecipe.ingredients.map((ingredient: any, index: number) => (
+                <li key={index}>
+                    <img
+                        src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`}
+                        alt={ingredient.name}
+                        style={{ width: '50px', height: '50px', marginRight: '10px' }}
+                    />
+                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                </li>
+            ))}
+            </ul>
+          
+          <h3>Instructions:</h3>
+            {spoonacularRecipe.steps
+                .split(/<\/li>/)
+                .map((step:string) => step.replace(/<\/?[^>]+(>|$)/g, '').trim())
+                .filter((step: string) => step.trim() !== '') 
+                .map((step: string, index: number) => (
+                <div key={index}>
+                    {index + 1}. {step} 
+                </div>
+            ))}
+          
+          {/* <p>Category: {spoonacularRecipe.category}</p> */}
         </div>
       )}
 
