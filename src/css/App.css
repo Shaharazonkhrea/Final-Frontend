@@ -2,19 +2,19 @@
   font-family: sans-serif;
 }
 
-.background-container {
+/* .background-container {
   background-image: url('/public/baking.jpg');
   background-repeat: no-repeat;
-  background-size: cover);
+  background-size: cover;
   background-position: center;
-  /* opacity: 0.9; */
-}
+  opacity: 0.9;
+} */
 
 .recipe-list {
   flex-direction: column;
   display: flex;
   /* height: auto; */
-  max-width: 75%;
+  width: auto;
   align-items: center;
   flex-wrap: wrap; 
   font-size: 75%;
@@ -48,6 +48,7 @@ button {
   padding: 5px;
   color: white;
   margin: 5px;
+  width: auto;
 }
 
 button:hover {
@@ -58,11 +59,11 @@ button:hover {
 .recipe-link {
   color: rgb(255, 255, 255);
   background-color: rgb(255, 0, 0);
-  width: auto;
+  /* width: auto; */
   margin: 3px;
   border: 2px solid rgb(121, 0, 0);
   border-radius: 5px;
-  max-width: calc(80vw - 30px)
+  /* max-width: calc(80vw - 30px) */
 }
 
 .recipe-form {
@@ -109,13 +110,13 @@ label {
     flex-direction: row;
     display: flex;
     /* height: auto; */
-    max-width: 75%;
+    width: auto;
     align-items: center;
     flex-wrap: wrap; 
-    font-size: 50%;
+    /* font-size: 50%; */
     padding: 3px;
     margin: 3px;
-
+    
   }
 
   .recipe-form {
