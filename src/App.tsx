@@ -3,13 +3,16 @@ import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import RecipeForm from "./components/RecipeForm";
 import Favorites from "./components/Favorites";
-import './App.css'
 import RecipeDetail from "./components/RecipeDetail";
+import './css/App.css'
 import SignIn from "./components/SignIn";
+import CookingPics from "./components/cookingPics";
+import "./css/Header.css"
 
 const App = () => (
   <Router>
     <Header />
+    <CookingPics />
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/add-recipe" element={<RecipeForm />} />

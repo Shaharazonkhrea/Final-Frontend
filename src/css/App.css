@@ -1,0 +1,146 @@
+* {
+  font-family: sans-serif;
+}
+
+.background-container {
+  background-image: url('/public/baking.jpg');
+  background-repeat: no-repeat;
+  background-size: cover);
+  background-position: center;
+  /* opacity: 0.9; */
+}
+
+.recipe-list {
+  flex-direction: column;
+  display: flex;
+  /* height: auto; */
+  max-width: 75%;
+  align-items: center;
+  flex-wrap: wrap; 
+  font-size: 75%;
+  padding: 10px;
+  margin: 10px;
+}
+
+.recipe-item {
+  flex-direction: column;
+  display: flex;
+  /* height: auto; */
+  max-width: calc(80vw - 30px);
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin: 10px;
+}
+
+.recipe-image {
+  /* height: 90%; */
+  max-width: calc(80vw - 30px);
+  align-items: center;
+  border: 2px solid rgb(121,0,0);
+  border-radius: 10px;
+}
+
+button {
+  background-color: rgb(255, 0, 0);
+  border-radius: 15px;
+  border: 2px solid rgb(121,0,0);
+  padding: 5px;
+  color: white;
+  margin: 5px;
+}
+
+button:hover {
+  background-color: lightblue;
+  color: black;
+}
+
+.recipe-link {
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 0, 0);
+  width: auto;
+  margin: 3px;
+  border: 2px solid rgb(121, 0, 0);
+  border-radius: 5px;
+  max-width: calc(80vw - 30px)
+}
+
+.recipe-form {
+  border: 5px solid rgb(121,0,0);
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: auto;
+  flex-wrap: wrap;
+
+}
+
+.input {
+  margin: 5px;
+
+}
+
+label {
+  margin: 5px;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* .favorite {
+  height: 500px;
+} */
+
+.favorites-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+@media (min-width: 768px) {
+
+  .recipe-list {
+    flex-direction: row;
+    display: flex;
+    /* height: auto; */
+    max-width: 75%;
+    align-items: center;
+    flex-wrap: wrap; 
+    font-size: 50%;
+    padding: 3px;
+    margin: 3px;
+
+  }
+
+  .recipe-form {
+    border: 5px solid rgb(252, 0, 0);
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    flex-wrap: wrap;
+  
+  }
+
+  .form-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .favorites-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  
+  }
+}
+

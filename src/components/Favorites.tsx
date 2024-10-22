@@ -22,9 +22,25 @@ const Favorites: React.FC = () => {
 
     fetchFavorites();
   }, []);
+  const recipes = [
+    {
+      _id: 4,
+      title: "pizza",
+      imageUrl:'',
+      isFavorited: false
+    },
+    {
+      _id: 2,
+      title: "sandwich",
+      imageUrl:'',
+      isFavorited: true
+    }
+  ]
+
 
   const handleToggleFavorite = async (recipeId: string) => {
     try {
+    
       await toggleFavorite(+recipeId);
 
       setFavorites((prevFavorites) =>
@@ -44,17 +60,17 @@ const Favorites: React.FC = () => {
   return (
     <div className='favorites-container'>
       <h1>Your Favorite Recipes</h1>
-      {favorites.length > 0 ? (
-        favorites.map((recipe) => (
+
+      {
+        recipes.map((recipe) => (
           <div className='recipe-item favorite' key={recipe._id}>
             <h2>{recipe.title}</h2>
             <img src={recipe.imageUrl} alt={recipe.title} style={{ width: '300px' }} />
             <button>{recipe.isFavorited ? 'Unfavorite' : 'Favorite'}</button>
           </div>
         ))
-      ) : (
-        <p>No favorites available</p>
-      )}
+      }
+
     </div>
   );
 };
