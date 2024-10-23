@@ -3,6 +3,11 @@ import { useParams } from 'react-router-dom';
 import { getRecipeById, getSpoonacularRecipeById } from '../services/recipeService'; 
 import Recipe from "../interfaces/Recipe";
 
+interface Step {
+    number: number
+    step: string
+}
+
 const RecipeDetail: React.FC = () => {
     const [userRecipe, setUserRecipe] = useState<Recipe | null>(null);
     const [spoonacularRecipe, setSpoonacularRecipe] = useState<any | null>(null);
@@ -77,12 +82,12 @@ useEffect(() => {
           
           <h3>Instructions:</h3>
             {spoonacularRecipe.steps
-                .split(/<\/li>/)
-                .map((step:string) => step.replace(/<\/?[^>]+(>|$)/g, '').trim())
-                .filter((step: string) => step.trim() !== '') 
-                .map((step: string, index: number) => (
-                <div key={index}>
-                    {index + 1}. {step} 
+                // .split(/<\/li>/)
+                // .map((step:string) => step.replace(/<\/?[^>]+(>|$)/g, '').trim())
+                // .filter((step: string) => step.trim() !== '') 
+                .map((step: Step) => (
+                <div key={step.number}>
+                    {step.number}. {step.step} 
                 </div>
             ))}
           
