@@ -10,11 +10,12 @@ const scrubRecipes = (recipes: any[]): Recipe[] => (
     _id: recipe.id,
     title: recipe.title,
     ingredients: recipe.extendedIngredients,
-    steps: recipe.instructions,
+    steps: recipe.analyzedInstructions[0].steps,
     category: recipe.cuisines ? recipe.cuisines[0] : undefined,
     imageUrl: recipe.image
   }))
 )
+
 
 export const getRecipeById = async (id: string): Promise<Recipe> => {
   const response = await axios.get('${apiUrl}/${id}');
